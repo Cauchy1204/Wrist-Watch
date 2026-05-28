@@ -1,0 +1,16 @@
+{
+  "name": "Rise the Watch",
+  "short_name": "Rise Watch",
+  "description": "Right wrist symptom tracker and pre-visit summary assistant.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F7FF",
+  "theme_color": "#7667F5",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

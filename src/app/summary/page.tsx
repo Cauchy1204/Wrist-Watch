@@ -1,8 +1,12 @@
 "use client";
 
-import { Download, FileText } from "lucide-react";
-import { MetricCard } from "@/components/MetricCard";
-import { Page, PageHeader } from "@/components/Page";
+import { FileText } from "lucide-react";
+import { Page } from "@/components/layout/Page";
+import { PainDistributionMap } from "@/components/summary/PainDistributionMap";
+import { SummaryPdfExportButton } from "@/components/summary/SummaryPdfExportButton";
+import { SummaryRow } from "@/components/summary/SummaryRow";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { MetricCard } from "@/components/ui/StatCard";
 import { useRecords } from "@/lib/hooks";
 import { summarize } from "@/lib/summary";
 
@@ -13,13 +17,13 @@ export default function SummaryPage() {
   return (
     <Page>
       <PageHeader title="就诊总结" kicker="Pre-visit Summary" />
-      <section className="gradient-panel rounded-2xl p-5 text-white shadow-soft">
+      <section className="gradient-panel rounded-2xl p-5 text-white">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/18">
+          <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/18 bg-white/14 backdrop-blur-xl">
             <FileText size={22} />
           </div>
           <div>
-            <p className="text-sm text-white/70">最近 14 天</p>
+            <p className="text-sm text-white/62">最近 14 天</p>
             <h2 className="text-xl font-semibold">医生可读摘要</h2>
           </div>
         </div>
@@ -33,30 +37,17 @@ export default function SummaryPage() {
         <MetricCard label="平均强度" value={`${result.averageSeverity}/10`} />
       </section>
 
-      <section className="glass mt-5 rounded-2xl p-4">
+      <section className="premium-card mt-5 rounded-2xl p-4">
         <dl className="space-y-4">
-          <Row label="最常见部位" value={result.mostCommonRegion} />
-          <Row label="常见诱因" value={result.commonTrigger} />
-          <Row label="常见加重动作" value={result.commonMotion} />
+          <SummaryRow label="最常见部位" value={result.mostCommonRegion} />
+          <SummaryRow label="常见诱因" value={result.commonTrigger} />
+          <SummaryRow label="常见加重动作" value={result.commonMotion} />
         </dl>
       </section>
 
-      <button
-        onClick={() => alert("原型阶段：PDF 导出将在后续接入。")}
-        className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-ink py-4 font-semibold text-white"
-      >
-        <Download size={18} />
-        导出 PDF
-      </button>
-    </Page>
-  );
-}
+      <PainDistributionMap records={records} />
 
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center justify-between gap-4">
-      <dt className="text-sm text-slate-500">{label}</dt>
-      <dd className="text-right font-semibold text-ink">{value}</dd>
-    </div>
+      <SummaryPdfExportButton records={records} summary={result} />
+    </Page>
   );
 }

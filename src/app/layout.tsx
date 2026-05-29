@@ -16,15 +16,13 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#7667F5"
+  themeColor: "#6258E8"
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN">
-      <body>
-        <main className="phone-shell">{children}</main>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

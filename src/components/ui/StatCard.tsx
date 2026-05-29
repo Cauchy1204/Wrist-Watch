@@ -1,0 +1,18 @@
+export function StatCard({
+  label,
+  value,
+  tone = "light"
+}: {
+  label: string;
+  value: string | number;
+  tone?: "light" | "dark";
+}) {
+  return (
+    <div className={tone === "dark" ? "primary-action rounded-xl p-4 text-white" : "premium-card rounded-xl p-4"}>
+      <p className={tone === "dark" ? "text-xs text-white/65" : "text-xs text-slate-500"}>{label}</p>
+      <p className="mt-2 text-2xl font-semibold">{value}</p>
+    </div>
+  );
+}
+
+export const MetricCard = StatCard;

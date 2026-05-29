@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { loadRecords, loadSettings } from "./storage";
-import { AppSettings, SymptomRecord } from "./types";
+import { AppSettings, SymptomRecord } from "@/types/symptom";
 
 export function useRecords() {
   const [records, setRecords] = useState<SymptomRecord[]>([]);

@@ -1,7 +1,8 @@
 "use client";
 
 import { Bell, Trash2 } from "lucide-react";
-import { Page, PageHeader } from "@/components/Page";
+import { Page } from "@/components/layout/Page";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { loadSettings, saveRecords, saveSettings } from "@/lib/storage";
 import { useRecords, useSettings } from "@/lib/hooks";
 
@@ -20,9 +21,9 @@ export default function SettingsPage() {
   return (
     <Page>
       <PageHeader title="设置" kicker="Settings" />
-      <section className="glass rounded-2xl p-5">
+      <section className="premium-card rounded-2xl p-5">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-violet/10 text-violet">
+          <div className="subtle-ring flex h-11 w-11 items-center justify-center rounded-full bg-white text-violet">
             <Bell size={21} />
           </div>
           <div>
@@ -35,7 +36,7 @@ export default function SettingsPage() {
           <span className="text-sm font-medium text-slate-600">开启提醒</span>
           <button
             onClick={() => update({ reminderEnabled: !settings.reminderEnabled })}
-            className={`relative h-8 w-14 rounded-full transition ${settings.reminderEnabled ? "bg-violet" : "bg-slate-300"}`}
+            className={`relative h-8 w-14 rounded-full transition ${settings.reminderEnabled ? "bg-gradient-to-r from-azure to-violet" : "bg-slate-300"}`}
             aria-label="切换晚间提醒"
           >
             <span className={`absolute top-1 h-6 w-6 rounded-full bg-white transition ${settings.reminderEnabled ? "left-7" : "left-1"}`} />
@@ -48,12 +49,12 @@ export default function SettingsPage() {
             type="time"
             value={settings.reminderTime}
             onChange={(event) => update({ reminderTime: event.target.value })}
-            className="mt-2 w-full rounded-xl border border-white bg-white/80 px-4 py-3 text-lg font-semibold text-ink outline-none focus:ring-2 focus:ring-violet/35"
+            className="premium-card mt-2 w-full rounded-xl px-4 py-3 text-lg font-semibold text-ink outline-none focus:ring-2 focus:ring-violet/25"
           />
         </label>
       </section>
 
-      <section className="glass mt-5 rounded-2xl p-5">
+      <section className="premium-card mt-5 rounded-2xl p-5">
         <h2 className="font-semibold text-ink">本地数据</h2>
         <p className="mt-2 text-sm leading-6 text-slate-500">当前浏览器中保存了 {records.length} 条记录。原型阶段所有数据都留在本机。</p>
         <button onClick={clearRecords} className="mt-4 flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 font-semibold text-red-600">

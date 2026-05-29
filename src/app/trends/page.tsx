@@ -1,6 +1,7 @@
 "use client";
 
-import { Page, PageHeader } from "@/components/Page";
+import { Page } from "@/components/layout/Page";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { useRecords } from "@/lib/hooks";
 import { recentRecords } from "@/lib/summary";
 
@@ -11,7 +12,7 @@ export default function TrendsPage() {
   return (
     <Page>
       <PageHeader title="趋势统计" kicker="Trends" />
-      <section className="glass rounded-2xl p-4">
+      <section className="premium-card rounded-2xl p-4">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-semibold text-ink">最近 14 天强度</h2>
           <span className="text-xs text-slate-500">{records.length} 条症状</span>
@@ -19,11 +20,11 @@ export default function TrendsPage() {
         {records.length === 0 ? (
           <p className="py-8 text-center text-sm leading-6 text-slate-500">暂无可统计的症状记录。</p>
         ) : (
-          <div className="flex h-56 items-end gap-2 border-b border-slate-200 px-1">
+          <div className="flex h-56 items-end gap-2 border-b border-slate-200/80 px-1">
             {records.map((record) => (
               <div key={record.id} className="flex flex-1 flex-col items-center justify-end gap-2">
                 <div
-                  className="w-full rounded-t-lg bg-gradient-to-t from-azure to-violet"
+                  className="w-full rounded-t-lg bg-gradient-to-t from-azure/85 to-violet shadow-[0_8px_18px_rgba(47,125,255,0.16)]"
                   style={{ height: `${Math.max(8, ((record.severity ?? 0) / max) * 190)}px` }}
                 />
                 <span className="text-[10px] text-slate-400">{new Date(record.createdAt).getDate()}</span>
@@ -43,7 +44,7 @@ export default function TrendsPage() {
             return severity >= 7;
           }).length;
           return (
-            <div key={labels[band]} className="glass rounded-xl p-4 text-center">
+            <div key={labels[band]} className="premium-card rounded-xl p-4 text-center">
               <p className="text-xs text-slate-500">{labels[band]}</p>
               <p className="mt-2 text-2xl font-semibold text-ink">{count}</p>
             </div>

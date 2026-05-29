@@ -1,6 +1,6 @@
 "use client";
 
-import { AppSettings, SymptomRecord } from "./types";
+import { AppSettings, SymptomRecord } from "@/types/symptom";
 
 const RECORDS_KEY = "rise-watch-records";
 const SETTINGS_KEY = "rise-watch-settings";
@@ -28,6 +28,11 @@ export function saveRecords(records: SymptomRecord[]) {
 export function addRecord(record: SymptomRecord) {
   const records = loadRecords();
   saveRecords([record, ...records]);
+}
+
+export function deleteRecord(id: string) {
+  const records = loadRecords();
+  saveRecords(records.filter((record) => record.id !== id));
 }
 
 export function loadSettings(): AppSettings {

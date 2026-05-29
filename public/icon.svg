@@ -5,7 +5,7 @@
   <defs>
     <linearGradient id="g" x1="30" y1="24" x2="166" y2="174" gradientUnits="userSpaceOnUse">
       <stop stop-color="#3D8BFF"/>
-      <stop offset="1" stop-color="#7667F5"/>
+      <stop offset="1" stop-color="#6258E8"/>
     </linearGradient>
   </defs>
 </svg>

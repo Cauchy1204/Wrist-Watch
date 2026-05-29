@@ -1,5 +1,5 @@
 import { daysAgo } from "./date";
-import { regionLabels, SymptomRecord } from "./types";
+import { regionLabels, SymptomRecord } from "@/types/symptom";
 
 export function recentRecords(records: SymptomRecord[], days = 14) {
   const start = daysAgo(days - 1);
@@ -37,6 +37,8 @@ export function summarize(records: SymptomRecord[]) {
         : `最近14天共记录右腕症状${symptomRecords.length}次，无症状天数${noSymptomDays}天。最常见疼痛部位为${mostCommonRegion ? regionLabels[mostCommonRegion] : "未明确"}，最高强度${severities.length ? Math.max(...severities) : 0}/10，平均强度${averageSeverity}/10。常见诱因为${commonTrigger ?? "未明确"}，常见加重动作为${commonMotion ?? "未明确"}。建议就诊时结合具体动作、持续时间和是否伴随麻木无力进一步评估。`
   };
 }
+
+export type SummaryResult = ReturnType<typeof summarize>;
 
 function mostCommon<T extends string>(items: T[]) {
   const counts = new Map<T, number>();

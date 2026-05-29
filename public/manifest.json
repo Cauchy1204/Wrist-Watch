@@ -4,8 +4,8 @@
   "description": "Right wrist symptom tracker and pre-visit summary assistant.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F5F7FF",
-  "theme_color": "#7667F5",
+  "background_color": "#F6F8FC",
+  "theme_color": "#6258E8",
   "icons": [
     {
       "src": "/icon.svg",
